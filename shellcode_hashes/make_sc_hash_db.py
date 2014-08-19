@@ -491,7 +491,7 @@ HASH_TYPES = [
     ('shl7shr19Hash32',         32, pseudocode_shl7shr19Hash32),
     ('sll1AddHash32',           32, pseudocode_sll1AddHash32),
     ('playWith0xedb88320Hash',  32, pseudocode_playWith0xedb88320Hash),
-    ('crc32',                   32, 'Standard crc32'),
+    ('crc32',                   32, 'Standard crc32')]
 
 
 ############################################################
