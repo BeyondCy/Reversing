@@ -349,7 +349,7 @@ for c in input_string {
    acc := acc + c;
 }
 '''
-             
+
 def ror13AddHash32(inString,fName):
     if inString is None:
         return 0
@@ -361,6 +361,22 @@ def ror13AddHash32(inString,fName):
 
 pseudocode_ror13AddHash32 = '''acc := 0;
 for c in input_string {
+   acc := ROR(acc, 13);
+   acc := acc + c;
+}
+'''
+
+def ror13AddWithNullHash32(inString,fName):
+    if inString is None:
+        return 0
+    val = 0
+    for i in inString + chr(0):
+        val = ror(val, 0xd, 32)
+        val += ord(i)
+    return val
+
+pseudocode_ror13AddWithNullHash32 = '''acc := 0;
+for c in input_string_with_null_terminator {
    acc := ROR(acc, 13);
    acc := acc + c;
 }
@@ -479,6 +495,7 @@ acc := acc + ror13add(DllName);
 # The list of tuples of (supported hash name, hash size, pseudo_code)
 HASH_TYPES = [
     ('ror13AddHash32',          32, pseudocode_ror13AddHash32),
+    ('ror13AddWithNullHash32',  32, pseudocode_ror13AddWithNullHash32),
     ('ror13AddHash32AddDll',    32, pseudocode_ror13AddHash32AddDll),
     ('poisonIvyHash',           32, pseudocode_poisonIvyHash),
     ('rol7AddHash32',           32, pseudocode_rol7AddHash32),
